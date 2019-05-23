@@ -25,6 +25,10 @@
 - title: Home
   url: /intro
   not_numbered: true
+  
+# Adds a searchbar link
+- title: Search
+  search: true
 
 # Add a header and sample content section
 - header: Chartbook
@@ -50,8 +54,3 @@
   url: https://github.com/djmcnay/pandabook/
   external: true
   not_numbered: true
-
-# Adds a searchbar link
-- title: Search
-  search: true
-
