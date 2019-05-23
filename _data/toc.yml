@@ -27,7 +27,10 @@
   not_numbered: true
 
 # Add a header and sample content section
-- header: Demo textbook
+- header: Chartbook
+
+# Divider for meta-pages and content page
+- divider: true
 
 # A chapter w/ a collection of sections beneath it
 - title: Features and customization
@@ -52,5 +55,3 @@
 - title: Search
   search: true
 
-# Divider for meta-pages and content page
-- divider: true
