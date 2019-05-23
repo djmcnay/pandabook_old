@@ -17,18 +17,6 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 
 {:.input_area}
 ```python
-poke = {}
-for r in regions:
-    x = pokemon(region=r)                # setup pokemon class
-    x.pokemon_run()                      # run pokemon model
-    poke[r] = (x.pokedata, x.pokemodel)  # append output data to poke dict
-```
-
-
-
-
-{:.input_area}
-```python
 def plotly_pokemon_fv(poke):
     
     # Calc Abs(Max) relative from All pokemons - to use as range for yaxis2
@@ -98,7 +86,9 @@ def plotly_pokemon_fv(poke):
 
 fig = plotly_pokemon_fv(poke)
 
-py.iplot(fig)
+#py.iplot(fig)
+py.plot(fig, filename='plotly_pokemon.html')
+display(HTML('plotly_pokemon.html')
 ```
 
 
