@@ -17,37 +17,6 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 
 {:.input_area}
 ```python
-import pandas as pd
-import numpy as np
-
-# Homemade Dependencies
-from badgertech import pokemon
-
-# Plotly Dependencies
-import plotly.offline as py
-from plotly import graph_objs as go
-
-# Do some weird shit to be able to use plotly offline directly into a notebook
-# https://plot.ly/python/offline/
-py.init_notebook_mode(connected=True)
-
-# Colourmap for charts
-cmap = {0:'purple', 1:'turquoise', 2:'grey', 3:'black', 4:'lime', 5:'blue', 6:'orange', 7:'red'}
-linewidth = [1]
-regions = ['US', 'UK', 'JP', 'DR']
-```
-
-
-
-<div markdown="0" class="output output_html">
-<script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script><script type="text/javascript">if (window.MathJax) {MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script><script>requirejs.config({paths: { 'plotly': ['https://cdn.plot.ly/plotly-latest.min']},});if(!window._Plotly) {require(['plotly'],function(plotly) {window._Plotly=plotly;});}</script>
-</div>
-
-
-
-
-{:.input_area}
-```python
 poke = {}
 for r in regions:
     x = pokemon(region=r)                # setup pokemon class
