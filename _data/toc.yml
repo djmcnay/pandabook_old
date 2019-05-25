@@ -38,19 +38,19 @@
 
 # A chapter w/ a collection of sections beneath it
 - title: Cross-Asset
-  url: /features/features
+  url: /chapters/crossasset
   not_numbered: true
   expand_sections: false
   sections:
   - title: Markdown files
-    url: /features/markdown
+    url: /chapters/markdown
     not_numbered: true
   - title: Markdown files
-    url: /features/markdown
+    url: /chapters/markdown
     not_numbered: true
 
 - title: Pokemon Model
-  url: /features/pokemon
+  url: /chapters/pokemon
   not_numbered: true
   expand_sections: false
 
