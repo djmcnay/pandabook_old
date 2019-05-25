@@ -38,7 +38,7 @@
 
 # A chapter w/ a collection of sections beneath it
 - title: Cross-Asset
-  url: /chapters/crossasset
+  url: /chapters/
   not_numbered: true
   expand_sections: false
   sections:
