@@ -18,7 +18,7 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 
 The intuition behind the model presented here is relatively simple - the *"Fair Value"* of a long dated bond should be a function of short-term interest rates, inflation and economic growth. Additionally as capital allocation becomes increasing global it is reasonable that our *"Fair Value"* should include a global factor.
 
-Formally:
+
 $ FV_{x} = \beta_{x,0} 
 +\beta_{x,1}\times \text{Rates} 
 +\beta_{x,2} \times \text{Inf}
@@ -39,6 +39,7 @@ Mathematically we are indifferent to the choice of input, as we are simply calcu
 {:.input_area}
 ```python
 # NO CODE
+
 from IPython.display import display, HTML
 display(HTML('./plotly_pokemon_primer.html'))
 ```
@@ -133,6 +134,31 @@ def pokemon(df, window=36, valiadate_data=True):
     return guess, stats
 ```
 
+
+## Data Sources
+
+All data is open sourced and comes from [Quandl](www.quandl.com). For the Pokemon model this means a compromise between what we would consider to be the optimal data and what is easily achievable. Below note the data used here (and consider some better data).
+
+__US Treasuries__
+* [US Treasury](https://www.quandl.com/data/USTREASURY/YIELD-Treasury-Yield-Curve-Rates) for nominal 10 & 2 year yields
+* [UMich](https://www.quandl.com/data/UMICH/SOC33-University-of-Michigan-Consumer-Survey-Expected-Change-in-Prices-During-the-Next-5-Years) 5-year Median Inflation Expectations
+* [ISM Mfg Composite](https://www.quandl.com/data/ISM/MAN_PMI-PMI-Composite-Index) for Growth estimates
+
+__Gilts__
+* [Bank-of-England](https://www.quandl.com/data/BOE/IUDMNZC-Yield-From-British-Government-Securities-10-Year-Nominal-Zero-Coupon) 10-year Nominal Zero-Coupon as a proxy for the standard nominal
+* [ECB](https://www.quandl.com/data/ECB/FM_M_GB_GBP_RT_MM_GBP3MFSR__HSTA-United-Kingdom-Money-Market-GB-Pound-Sterling-3-month-British-Bankers-Association-Libor-Historical-close-average-of-observations-through-period-UK-pound-sterling-provided-by-Reuters) provide the 3m GBP LIBOR rate; need a better source but the BoE doesn't publish the 2 (or 1) year gilt yields or forward rate data. 
+* [Rate Inflation](https://www.quandl.com/data/RATEINF/INFLATION_GBR-Inflation-YOY-UK)
+* [OECD Amplitude-Adjusted Composite Leading Indicator](https://www.quandl.com/data/OECD/MEI_CLI_LOLITOAA_GBR_M-Amplitude-Adjusted-Cli-United-Kingdom)
+
+__Bunds__
+* Bundesbank for the [10-year](https://www.quandl.com/data/BUNDESBANK/BBK01_WT1010-Daily-Yield-Of-The-Current-10-Year-Federal-Bond) & [2-year](https://www.quandl.com/data/BUNDESBANK/BBK01_WT0202-Daily-Yield-Of-The-Current-two-year-Federal-Treasury-Notes) Bund yield. This needs further investigation as the Quandl dataset for the German 2-year only goes back to Jan-14, *which isn't enough for a sensible full-sample model*
+* [Rate Inflation](https://www.quandl.com/data/RATEINF/INFLATION_DEU-Inflation-YOY-Germany)
+* [OECD Amplitude-Adjusted Composite Leading Indicator](https://www.quandl.com/data/OECD/MEI_CLI_LOLITOAA_DEU_M-Amplitude-Adjusted-Cli-Germany)
+
+__JGBs__
+* [Ministry of Finance Japan]() for the [10-year](https://www.quandl.com/data/MOFJ/INTEREST_RATE_JAPAN_10Y-JGB-Interest-Rates-Term-Structure-10Y) & [2-year](https://www.quandl.com/data/MOFJ/INTEREST_RATE_JAPAN_2Y-JGB-Interest-Rates-Term-Structure-2Y) JGBs
+* [Rate Inflation](https://www.quandl.com/data/RATEINF/INFLATION_JPN)
+* [OECD Amplitude-Adjusted Composite Leading Indicator](https://www.quandl.com/data/OECD/MEI_CLI_LOLITOAA_JPN_M-Amplitude-Adjusted-Cli-Japan)
 
 ## Small Print
 
