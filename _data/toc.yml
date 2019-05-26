@@ -50,7 +50,7 @@
     not_numbered: true
 
 - title: Pokemon Model
-  url: /features/markdown
+  url: /features/pokemon
   not_numbered: true
   expand_sections: false
 
