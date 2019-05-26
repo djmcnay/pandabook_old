@@ -38,13 +38,10 @@
 
 # A chapter w/ a collection of sections beneath it
 - title: Cross-Asset
-  url: /features/markdown
+  url: /features/notebooks
   not_numbered: true
   expand_sections: false
   sections:
-  - title: Markdown files
-    url: /features/markdown
-    not_numbered: true
   - title: Markdown files
     url: /features/markdown
     not_numbered: true
@@ -53,7 +50,6 @@
   url: /features/pokemon
   not_numbered: true
   expand_sections: false
-
 
 - title: Primer Notebooks
   url: /features/primers/pokemon_primer
