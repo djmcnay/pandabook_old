@@ -55,6 +55,16 @@
   expand_sections: false
 
 
+- title: Primer Notebooks
+  url:
+  not_numbered: true
+  expand_sections: false
+  sections:
+  - title: Markdown files
+    url: /features/primers/pokemon_primer
+    not_numbered: true
+
+
 # External link
 - title: Github Repo
   url: https://github.com/djmcnay/pandabook/
