@@ -30,7 +30,7 @@ Mathematically we are indifferent to the choice of input, as we are simply calcu
 * Short-Rates - forward path of cash rates is modelled by the current 2-year rate
 * Inflation - ideally taken from market implied inflation from breakeven rates or inflation swaps
 * Growth - survey based (ISM) or from Composite Leading Indicators like the [OECD CLIs](http://www.oecd.org/sdd/leading-indicators/)
-* Global Factor - **most difficult** but could be the [BIS REER](https://www.bis.org/statistics/eer.htm) or a blend of international short rates
+* Global Factor - **most difficult** but could be the [BIS REER](https://www.bis.org/statistics/eer.htm) or a blend of global bonds
 
 ## Fair Value Output
 
