@@ -28,12 +28,13 @@ $ FV_{x} = \beta_{x,0}
 
 
 
-## Current Fair Value
+## Fair Value Output
 
 
 
 {:.input_area}
 ```python
+# NO CODE
 from IPython.display import display, HTML
 display(HTML('./plotly_pokemon_primer.html'))
 ```
