@@ -18,7 +18,6 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 
 {:.input_area}
 ```python
-'# HIDDEN'
 # HIDDEN
 
 # Standard Dependencies
@@ -76,7 +75,7 @@ regions = ['US', 'UK', 'JP', 'DR']
 
 {:.input_area}
 ```python
-# HIDDEN - Hides from Jupyter-Book outbut
+# HIDDEN
 
 poke = {}
 for r in regions:
@@ -91,6 +90,7 @@ for r in regions:
 {:.input_area}
 ```python
 # HIDDEN
+
 def plotly_pokemon_fv(poke):
     
     # Calc Abs(Max) relative from All pokemons - to use as range for yaxis2
@@ -164,6 +164,8 @@ def plotly_pokemon_fv(poke):
 
 {:.input_area}
 ```python
+# NO CODE
+
 fig = plotly_pokemon_fv(poke)
 py.plot(fig, filename='plotly_pokemon.html', auto_open=False)
 display(HTML('./plotly_pokemon.html'))
