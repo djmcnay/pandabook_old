@@ -56,11 +56,11 @@
 
 
 - title: Primer Notebooks
-  url:
+  url: /features/primers/pokemon_primer
   not_numbered: true
   expand_sections: false
   sections:
-  - title: Markdown files
+  - title: Pokemon Fair Value
     url: /features/primers/pokemon_primer
     not_numbered: true
 
