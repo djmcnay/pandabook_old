@@ -16,17 +16,21 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 
 # Primer for the Pokemon Fair Value bond model
 
-The intuition behind the model presented here is relatively simple - the *"Fair Value"* of a long dated bond should be a function of short-term interest rates, expectation of future inflation and some measure of growth. Additionally as capital allocation becomes increasing global it is reasonable that our *"Fair Value"* should include a global factor.
+The intuition behind the model presented here is relatively simple - the *"Fair Value"* of a long dated bond should be a function of short-term interest rates, inflation and economic growth. Additionally as capital allocation becomes increasing global it is reasonable that our *"Fair Value"* should include a global factor.
 
 Formally:
 $ FV_{x} = \beta_{x,0} 
-+\beta_{x,1}\times \text{Short-Rate} 
-+\beta_{x,2} \times \text{Inflation}
++\beta_{x,1}\times \text{Rates} 
++\beta_{x,2} \times \text{Inf}
 +\beta_{x,3} \times \text{Growth}
 +\beta_{x,4}\times \text{Global}
 +\epsilon_{x}$
 
-
+Mathematically we are indifferent to the choice of input, as we are simply calculating a multi-variate linear regression over several rolling windows; practically variable selection is probably the most challenging part of the model. If we assume markets attempt to incorporate forward estimates into prices than similarly we would prefer to incorporate forward looking macro variables into our estimates. Exact inputs are covered below, but in general:
+* Short-Rates - forward path of cash rates is modelled by the current 2-year rate
+* Inflation - ideally taken from market implied inflation from breakeven rates or inflation swaps
+* Growth - survey based (ISM) or from Composite Leading Indicators like the [OECD CLIs](http://www.oecd.org/sdd/leading-indicators/)
+* Global Factor - **most difficult** but could be the [BIS REER](https://www.bis.org/statistics/eer.htm) or a blend of international short rates
 
 ## Fair Value Output
 
@@ -79,7 +83,56 @@ display(HTML('./plotly_pokemon_primer.html'))
 
 ## Sample Python Code
 
-Where the Pokemon FV model has been used elsewhere in the chartbook it is pre-coded into 
+Where the Pokemon FV model has been presented elsewhere in the chartbook it has been calculated using a homemade class function - eventually this will be wrapped and posted to PyPi - but the code below is a sample of what is happening.
+
+
+
+{:.input_area}
+```python
+def pokemon(df, window=36, valiadate_data=True):
+    # REQUIREMENTS:
+    #    from sklearn.linear_model import LinearRegression
+    # INPUTS:
+    #    df - DataFrame with datetimeindex, col[0] as long bond & col[1+] as regression variables
+    #    window - rolling regression window; default is 36 months
+    #    validate_data - forward fills missing data (useful where we may be missing current month)
+    # OUTPUTS:
+    #    guess - DataFrame with long-bond, full sample and rolling model outputs
+    #    stats - coefficients for each thingy
+    
+    if valiadate_data is True:
+        df.fillna(method='ffill', inplace=True)   # Forward fill missing data
+        df = df[~df.isna().any(axis=1)]           # Each row complete
+        
+    # Dummy Dataframe(s)
+    guess = pd.DataFrame(data=df.iloc[:,0])
+    guess.columns = ['long_bond']
+    coeff_vn = ['r2', 'intercept']
+    coeff_vn.extend(list(df.columns.values)[1:])
+    stats = pd.DataFrame(columns=coeff_vn)
+        
+    # Full Sample Period
+    y, X = df.iloc[:,0], df.iloc[:,1:]
+    lm = LinearRegression().fit(X,y)
+    guess['full_sample'] = lm.predict(X)
+    stats.loc['full_sample',['r2','intercept']]=lm.score(X, y),lm.intercept_
+    stats.loc['full_sample'].iloc[2:] = lm.coef_
+        
+    # Rolling Window
+    for i, v in enumerate(guess.index):   
+        if i < window:
+            continue
+            
+        y = df.iloc[i-window:i,0]     # Dependant Var [long bond]
+        X = df.iloc[i-window:i,1:]    # Independant [short, inf, growth]
+        roll_lm = LinearRegression().fit(X,y)
+        guess.loc[v,'rolling'] = roll_lm.predict(X)[-1]
+        stats.loc[v,['r2', 'intercept']] = roll_lm.score(X, y), lm.intercept_
+        stats.loc[v].iloc[2:] = roll_lm.coef_ 
+
+    return guess, stats
+```
+
 
 ## Small Print
 
