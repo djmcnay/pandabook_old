@@ -18,8 +18,10 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 
 {:.input_area}
 ```python
+'# HIDDEN'
 # HIDDEN
 
+# Standard Dependencies
 import pandas as pd
 import numpy as np
 from IPython.display import display, HTML
@@ -88,6 +90,7 @@ for r in regions:
 
 {:.input_area}
 ```python
+# HIDDEN
 def plotly_pokemon_fv(poke):
     
     # Calc Abs(Max) relative from All pokemons - to use as range for yaxis2
