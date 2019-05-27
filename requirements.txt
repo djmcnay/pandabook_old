@@ -5,3 +5,8 @@ numpy
 datascience
 folium
 matplotlib
+plotly
+quandl
+alpha_vantage
+skikitlearn
+
